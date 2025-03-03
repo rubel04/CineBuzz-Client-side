@@ -1,2 +1,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@keyframes wiggle {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(50px); }
+  }
+  
+  .wiggle {
+    animation: wiggle 10s ease-in-out infinite;
+  }
+  

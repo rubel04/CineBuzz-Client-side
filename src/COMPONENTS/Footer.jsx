@@ -4,14 +4,14 @@ import { IoLogoLinkedin } from "react-icons/io5";
 
 const Footer = () => {
   return (
-    <div className="bg-black text-[#908d8d] p-10">
+    <div className="bg-black text-[#908d8d] p-4 md:p-10">
       <div className="w-10/12 mx-auto">
-        <div className="flex justify-between items-cente mb-12">
-          <a className="text-3xl pl-3 text-[#d96c2c] italic font-medium">
+        <div className="md:flex justify-between items-cente mb-12">
+          <a className="text-3xl md:pl-3 text-[#d96c2c] italic font-medium">
             Cine<span className="text-white">Buzz</span>
           </a>
-          <div className="flex items-center gap-4 te">
-            <p>Help / Privacy Policy</p>
+          <div className="md:flex items-center gap-4">
+            <p className="py-4 md:py-0">Help / Privacy Policy</p>
             <div className="flex gap-3 text-2xl">
               <a
                 href="https://www.facebook.com/rubelislam04"
