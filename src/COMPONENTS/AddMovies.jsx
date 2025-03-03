@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const AddMovies = () => {
+  const [error, setError] = useState({});
   const handleAddMovie = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -11,7 +14,6 @@ const AddMovies = () => {
     const genre = form.genre.value;
 
     const newMovie = {
-      form,
       title,
       poster,
       duration,
@@ -20,7 +22,25 @@ const AddMovies = () => {
       releaseYear,
       genre,
     };
-    console.log(newMovie);
+    // console.log(newMovie);
+
+    const newError = {};
+    if (!title || title.length < 2)
+      newError.title = "Title must be at least 2 characters.";
+    if (!title || !/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i.test(poster))
+      newError.poster = "Poster must be a valid image URL.";
+    if (!duration || duration.length < 60)
+      newError.duration = "Duration must be at least 60 minutes.";
+    if (!rating) newError.rating = "Please select a rating.";
+    if (!description || description.length < 10)
+      newError.description = "Summary must be at least 10 characters.";
+    if (!releaseYear) newError.releaseYear = "Please select a release year.";
+    if (!genre) newError.genre = "Please select a genre.";
+
+    setError(newError);
+    if (Object.keys(newError).length === 0) {
+      console.log("condition fulfill", newMovie);
+    }
   };
 
   return (
@@ -35,8 +55,8 @@ const AddMovies = () => {
               type="text"
               placeholder="Title"
               name="title"
-              required
             />
+            {error.title && <p className="text-sm text-red-500">{error.title}</p>}
           </div>
           <div className="w-full">
             <label htmlFor="">Movie Poster</label> <br />
@@ -45,8 +65,8 @@ const AddMovies = () => {
               type="text"
               placeholder="Poster"
               name="poster"
-              required
             />
+            {error.poster && <p className="text-sm text-red-500">{error.poster}</p>}
           </div>
         </div>
         <div className="w-full">
@@ -56,8 +76,8 @@ const AddMovies = () => {
             type="text"
             placeholder="Duration"
             name="duration"
-            required
           />
+          {error.duration && <p className="text-sm text-red-500">{error.duration}</p>}
         </div>
         <div>
           <fieldset className="fieldset">
@@ -72,6 +92,7 @@ const AddMovies = () => {
               <option value="Adventure">Adventure</option>
             </select>
           </fieldset>
+          {error.genre && <p className="text-sm text-red-500">{error.genre}</p>}
         </div>
         <div>
           <fieldset className="fieldset">
@@ -103,6 +124,7 @@ const AddMovies = () => {
               <option value="2025">2025</option>
             </select>
           </fieldset>
+          {error.releaseYear && <p className="text-sm text-red-500">{error.releaseYear}</p>}
         </div>
         <div className="w-full">
           <label htmlFor="">Rating</label> <br />
@@ -111,8 +133,8 @@ const AddMovies = () => {
             type="text"
             placeholder="Rating"
             name="rating"
-            required
           />
+          {error.rating && <p className="text-sm text-red-500">{error.rating}</p>}
         </div>
         <div className="w-full">
           <label htmlFor="">Description</label> <br />
@@ -121,10 +143,13 @@ const AddMovies = () => {
             type="text"
             placeholder="Short Description"
             name="description"
-            required
           />
+          {error.description && <p className="text-sm text-red-500">{error.description}</p>}
         </div>
-        <button type="submit" className="mt-6 w-full px-6 py-2 rounded cursor-pointer font-medium bg-[#d96c2c] text-white">
+        <button
+          type="submit"
+          className="mt-6 w-full px-6 py-2 rounded cursor-pointer font-medium bg-[#d96c2c] text-white"
+        >
           Add Movie
         </button>
       </form>
