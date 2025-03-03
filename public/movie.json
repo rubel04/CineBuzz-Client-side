@@ -1,0 +1,11 @@
+
+  {
+    "id": 1,
+    "title": "Inception",
+    "poster": "https://image.tmdb.org/t/p/w500/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg",
+    "genre": ["Action", "Sci-Fi", "Thriller"],
+    "duration": "148 min",
+    "releaseYear": 2010,
+    "rating": 8.8
+  }
+
