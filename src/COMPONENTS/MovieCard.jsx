@@ -36,7 +36,7 @@ const MovieCard = (props) => {
           </p>
           <p>Release: {movie.releaseYear}</p>
         </div>
-        <Link to={`/movie/${movie.id}`} className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium">
+        <Link to={`/movie/${movie._id}`} className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium">
           See Details
         </Link>
       </div>
