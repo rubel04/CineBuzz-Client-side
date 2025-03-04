@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { loginUser,loginUserWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +24,7 @@ const Login = () => {
             draggable: true,
           });
           form.reset();
-          navigate('/');
+          location.state ? navigate(location.state) : navigate("/");
         }
       })
       .catch((err) => {
@@ -45,7 +46,7 @@ const Login = () => {
             icon: "success",
             draggable: true,
           });
-          navigate('/');
+          location.state ? navigate(location.state) : navigate("/");
         }
       })
       .catch((err) => {

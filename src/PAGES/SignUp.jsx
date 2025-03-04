@@ -1,11 +1,13 @@
 import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { signUpUser,loginUserWithGoogle } = useContext(AuthContext);
+  const { signUpUser, loginUserWithGoogle, updateUserProfile } =
+    useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,15 +25,13 @@ const SignUp = () => {
         text: "Must have an Uppercase letter in the password",
       });
       return;
-    }
-    else if (!/[a-z]/.test(password)) {
+    } else if (!/[a-z]/.test(password)) {
       Swal.fire({
         icon: "error",
         text: "Must have a Lowercase letter in the password",
       });
       return;
-    }
-    else if (password.length < 6) {
+    } else if (password.length < 6) {
       Swal.fire({
         icon: "error",
         text: "Password must be at least 6 character",
@@ -42,6 +42,7 @@ const SignUp = () => {
     signUpUser(email, password)
       .then((result) => {
         // console.log(result);
+        updateUserProfile({ displayName: name, photoURL: photo });
         if (result.user) {
           Swal.fire({
             title: "You successfully sign up to CineBuzz!",
@@ -49,7 +50,7 @@ const SignUp = () => {
             draggable: true,
           });
           form.reset();
-          navigate('/');
+          location.state ? navigate(location.state) : navigate("/");
         }
       })
       .catch((err) => {
@@ -61,28 +62,27 @@ const SignUp = () => {
       });
   };
 
-  const handleGoogleLogin = ()=>{
+  const handleGoogleLogin = () => {
     loginUserWithGoogle()
-    .then((result) => {
-      // console.log(result);
-      if (result.user) {
+      .then((result) => {
+        // console.log(result);
+        if (result.user) {
+          Swal.fire({
+            title: "You successfully sign up to CineBuzz!",
+            icon: "success",
+            draggable: true,
+          });
+          location.state ? navigate(location.state) : navigate("/");
+        }
+      })
+      .catch((err) => {
+        // console.log(err.message);
         Swal.fire({
-          title: "You successfully sign up to CineBuzz!",
-          icon: "success",
-          draggable: true,
+          icon: "error",
+          text: err.message,
         });
-        navigate('/');
-      }
-    })
-    .catch((err) => {
-      // console.log(err.message);
-      Swal.fire({
-        icon: "error",
-        text: err.message,
       });
-    });
-  }
-
+  };
 
   return (
     <div className="md:3/4 lg:w-2/5 mx-auto md:my-16 bg-gray-50 p-6 md:p-16 rounded">
@@ -149,7 +149,10 @@ const SignUp = () => {
         <hr className="text-slate-300 h-[2px] w-full" />
       </div>
       <div className="text-center">
-        <button onClick={handleGoogleLogin} className="w-full border rounded-full border-slate-300 px-3 py-2 cursor-pointer font-medium hover:bg-[#d96c2c] hover:text-white transition duration-400">
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full border rounded-full border-slate-300 px-3 py-2 cursor-pointer font-medium hover:bg-[#d96c2c] hover:text-white transition duration-400"
+        >
           Sign Up with Google
         </button>
       </div>

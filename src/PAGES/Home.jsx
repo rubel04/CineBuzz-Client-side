@@ -1,5 +1,5 @@
-import Banner from "./Banner";
-import Movies from "./Movies";
+import Banner from "../COMPONENTS/Banner";
+import Movies from "../COMPONENTS/Movies";
 
 
 const Home = () => {
