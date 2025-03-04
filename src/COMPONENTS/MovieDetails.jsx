@@ -1,10 +1,49 @@
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { GiHeavyFighter } from "react-icons/gi";
 import { IoTimeSharp } from "react-icons/io5";
 import { MdStarHalf } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const MovieDetails = () => {
   const movie = useLoaderData();
+  const navigate = useNavigate();
+
+  const handleDeleteMovie = (id) => {
+    fetch(`http://localhost:4000/movie/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          Swal.fire({
+            title: "You successfully add a movie!",
+            icon: "success",
+            draggable: true,
+          });
+          navigate("/allMovies");
+        }
+      });
+  };
+  const handleAddMovieToFavorite = () => {
+    fetch(`http://localhost:4000/favoriteMovies`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(movie),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "You successfully add movie to favorite list!",
+            icon: "success",
+            draggable: true,
+          });
+        }
+      });
+  };
+
   return (
     <div className="flex justify-center w-11/12 mx-auto">
       <div>
@@ -39,16 +78,18 @@ const MovieDetails = () => {
           <p>Release: {movie.releaseYear}</p>
         </div>
         <div className="flex gap-6">
-        <button
-          className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
-        >
-          Delete Movie
-        </button>
-        <button
-          className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
-        >
-          Add To Favorite
-        </button>
+          <button
+            onClick={() => handleDeleteMovie(movie._id)}
+            className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
+          >
+            Delete Movie
+          </button>
+          <button
+            onClick={handleAddMovieToFavorite}
+            className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
+          >
+            Add To Favorite
+          </button>
         </div>
       </div>
     </div>
