@@ -8,6 +8,7 @@ import AddMovies from "../COMPONENTS/AddMovies";
 import Home from "../PAGES/Home";
 import AllMovies from "../COMPONENTS/AllMovies";
 import ErrorPage from "../PAGES/ErrorPage";
+import MyFavoriteMovies from "../COMPONENTS/MyFavoriteMovies";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,11 @@ const router = createBrowserRouter([
         path: '/allMovies',
         element: <AllMovies/>,
         loader: () => fetch('http://localhost:4000/allMovies')
+      },
+      {
+        path: '/myFavorites',
+        element: <PrivateRoute><MyFavoriteMovies></MyFavoriteMovies></PrivateRoute>,
+        loader: ()=> fetch('http://localhost:4000/favoriteMovies')
       }
     ],
   },

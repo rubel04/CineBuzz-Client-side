@@ -11,6 +11,7 @@ const AllMovies = () => {
           <BiSolidMoviePlay />
         </p>
         <p className="text-base font-medium text-gray-600">
+        Explore Top-Rated Films
         Find Your Next Favorite
         </p>
         <h2 className="text-3xl font-bold">
