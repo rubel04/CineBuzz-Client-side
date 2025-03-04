@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddMovies = () => {
+  const { user } = useContext(AuthContext);
   const [error, setError] = useState({});
   const handleAddMovie = (event) => {
     event.preventDefault();
@@ -12,8 +15,10 @@ const AddMovies = () => {
     const description = form.description.value;
     const releaseYear = form.releaseYear.value;
     const genre = form.genre.value;
+    const email = user?.email;
 
     const newMovie = {
+      email,
       title,
       poster,
       duration,
@@ -29,8 +34,7 @@ const AddMovies = () => {
       newError.title = "Title must be at least 2 characters.";
     if (!title || !/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i.test(poster))
       newError.poster = "Poster must be a valid image URL.";
-    if (!duration || duration.length < 60)
-      newError.duration = "Duration must be at least 60 minutes.";
+    if (!duration || isNaN(duration) || duration < 60) newError.duration = "Duration must be at least 60 minutes.";
     if (!rating) newError.rating = "Please select a rating.";
     if (!description || description.length < 10)
       newError.description = "Summary must be at least 10 characters.";
@@ -40,6 +44,24 @@ const AddMovies = () => {
     setError(newError);
     if (Object.keys(newError).length === 0) {
       console.log("condition fulfill", newMovie);
+      fetch("http://localhost:4000/movies", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newMovie),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+              title: "You successfully add a movie!",
+              icon: "success",
+              draggable: true,
+            });
+          }
+        });
     }
   };
 
@@ -56,7 +78,9 @@ const AddMovies = () => {
               placeholder="Title"
               name="title"
             />
-            {error.title && <p className="text-sm text-red-500">{error.title}</p>}
+            {error.title && (
+              <p className="text-sm text-red-500">{error.title}</p>
+            )}
           </div>
           <div className="w-full">
             <label htmlFor="">Movie Poster</label> <br />
@@ -66,18 +90,22 @@ const AddMovies = () => {
               placeholder="Poster"
               name="poster"
             />
-            {error.poster && <p className="text-sm text-red-500">{error.poster}</p>}
+            {error.poster && (
+              <p className="text-sm text-red-500">{error.poster}</p>
+            )}
           </div>
         </div>
         <div className="w-full">
           <label htmlFor="">Duration</label> <br />
           <input
             className="input w-full mt-1 pl-4"
-            type="text"
+            type="number"
             placeholder="Duration"
             name="duration"
           />
-          {error.duration && <p className="text-sm text-red-500">{error.duration}</p>}
+          {error.duration && (
+            <p className="text-sm text-red-500">{error.duration}</p>
+          )}
         </div>
         <div>
           <fieldset className="fieldset">
@@ -124,7 +152,9 @@ const AddMovies = () => {
               <option value="2025">2025</option>
             </select>
           </fieldset>
-          {error.releaseYear && <p className="text-sm text-red-500">{error.releaseYear}</p>}
+          {error.releaseYear && (
+            <p className="text-sm text-red-500">{error.releaseYear}</p>
+          )}
         </div>
         <div className="w-full">
           <label htmlFor="">Rating</label> <br />
@@ -134,7 +164,9 @@ const AddMovies = () => {
             placeholder="Rating"
             name="rating"
           />
-          {error.rating && <p className="text-sm text-red-500">{error.rating}</p>}
+          {error.rating && (
+            <p className="text-sm text-red-500">{error.rating}</p>
+          )}
         </div>
         <div className="w-full">
           <label htmlFor="">Description</label> <br />
@@ -144,7 +176,9 @@ const AddMovies = () => {
             placeholder="Short Description"
             name="description"
           />
-          {error.description && <p className="text-sm text-red-500">{error.description}</p>}
+          {error.description && (
+            <p className="text-sm text-red-500">{error.description}</p>
+          )}
         </div>
         <button
           type="submit"

@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch("/movies.json")
+    fetch("http://localhost:4000/movies")
       .then((res) => res.json())
       .then((data) => setMovies(data));
   }, []);

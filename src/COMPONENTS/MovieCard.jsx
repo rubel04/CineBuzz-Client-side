@@ -19,9 +19,10 @@ const MovieCard = (props) => {
         <div className="flex justify-between items-center text-gray-600 text-sm">
           <div className="flex items-center gap-2">
             <GiHeavyFighter className="text-[#d96c2c] text-base" />
-            {movie.genre.map((genr, idx) => (
+            {/* {movie.genre.map((genr, idx) => (
               <p key={idx}>{genr},</p>
-            ))}
+            ))} */}
+            <p>{movie.genre}</p>
           </div>
           <p className="flex items-center">
             <IoTimeSharp className="text-[#d96c2c] text-base" />
