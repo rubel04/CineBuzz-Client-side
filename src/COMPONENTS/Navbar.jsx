@@ -9,11 +9,16 @@ import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { BsFillBrightnessHighFill, BsMoonStarsFill } from "react-icons/bs";
 import { useTheme } from "../Hooks/UseTheme";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const {changeTheme,mode} = useTheme();
+  useEffect(() => {
+    AOS.init})
   const links = (
     <>
       <NavLink
@@ -97,9 +102,9 @@ const Navbar = () => {
   };
   return (
     <div className="md:w-11/12 mx-auto dark:bg-black">
-      <div className="mt-2">
+      <div data-aos="fade-down" className="mt-2">
         <a className="text-3xl pl-3 text-[#d96c2c] italic font-medium">
-          Cine<span className="text-black">Buzz</span>
+          Cine<span className={`${mode === "dark" && "text-white"} text-black`}>Buzz</span>
         </a>
       </div>
 
@@ -137,23 +142,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-end flex items-center gap-4">
-          {/* {mode !== "dark" ? (
-            
-            <span
-              onClick={changeTheme}
-              className="text-4xl cursor-pointer"
-            >
-              <BsFillBrightnessHighFill />
-            </span>
-          ) : (
-            <span
-              onClick={changeTheme}
-              className="text-4xl cursor-pointer"
-            >
-              <BsMoonStarsFill />
-            </span>
-          )} */}
-          <button className="text-4xl cursor-pointer" onClick={changeTheme}>{
+          <button className="text-3xl md:text-4xl cursor-pointer" onClick={changeTheme}>{
           mode === 'dark'? <BsFillBrightnessHighFill /> : <BsMoonStarsFill />
         }</button>
           {user ? (
@@ -167,7 +156,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu bg-base-100 rounded-box z-1 w-36 p-2 shadow-sm"
+                className={`${mode === "dark" && "text-black"} dropdown-content menu bg-base-100 rounded-box z-1 w-36 p-2 shadow-sm`}
               >
                 <li>
                   <p>{user?.displayName}</p>
@@ -179,7 +168,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link
-              className="mt-4 border rounded-full flex items-center gap-2 border-slate-300 px-6 py-2 cursor-pointer font-medium bg-[#d96c2c] text-white"
+              className="border rounded-full flex items-center gap-2 border-slate-300 px-6 py-2 cursor-pointer font-medium bg-[#d96c2c] text-white"
               to="/login"
             >
               <CgLogIn />

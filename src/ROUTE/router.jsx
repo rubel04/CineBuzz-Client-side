@@ -32,7 +32,7 @@ const router = createBrowserRouter([
       {
         path: '/movie/:id',
         element: <PrivateRoute><MovieDetails /></PrivateRoute> ,
-        loader: ({params}) => fetch(`http://localhost:4000/movie/${params.id}`)
+        loader: ({params}) => fetch(`https://cinebuzz-server-side.vercel.app/movie/${params.id}`)
       },
       {
         path: '/addMovies',
@@ -41,17 +41,17 @@ const router = createBrowserRouter([
       {
         path: '/updateMovie/:id',
         element: <PrivateRoute><UpdateMovie /></PrivateRoute> ,
-        loader: ({params}) => fetch(`http://localhost:4000/movie/${params.id}`)
+        loader: ({params}) => fetch(`https://cinebuzz-server-side.vercel.app/movie/${params.id}`)
       },
       {
         path: '/allMovies',
         element: <AllMovies/>,
-        loader: () => fetch('http://localhost:4000/allMovies')
+        loader: () => fetch('https://cinebuzz-server-side.vercel.app/allMovies')
       },
       {
         path: '/myFavorites',
         element: <PrivateRoute><MyFavoriteMovies></MyFavoriteMovies></PrivateRoute>,
-        loader: ()=> fetch('http://localhost:4000/favoriteMovies')
+        loader: ()=> fetch('https://cinebuzz-server-side.vercel.app/favoriteMovies')
       }
     ],
   },

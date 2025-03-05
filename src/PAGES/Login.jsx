@@ -2,11 +2,19 @@ import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { useTheme } from "../Hooks/UseTheme";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { useEffect } from "react";
 
 const Login = () => {
-  const { loginUser,loginUserWithGoogle } = useContext(AuthContext);
+  const { loginUser, loginUserWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const { mode } = useTheme();
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,8 +44,8 @@ const Login = () => {
       });
   };
 
-    const handleGoogleLogin = ()=>{
-      loginUserWithGoogle()
+  const handleGoogleLogin = () => {
+    loginUserWithGoogle()
       .then((result) => {
         // console.log(result);
         if (result.user) {
@@ -56,10 +64,15 @@ const Login = () => {
           text: err.message,
         });
       });
-    }
+  };
 
   return (
-    <div className="md:3/4 lg:w-2/5 mx-auto md:my-16 bg-gray-50 p-6 md:p-16 rounded">
+    <div
+      data-aos="zoom-in"
+      className={`${
+        mode === "dark" && "text-black"
+      } md:3/4 lg:w-2/5 mx-auto md:my-16 bg-gray-50 p-6 md:p-16 rounded`}
+    >
       <h2 className="text-3xl font-medium text-center mb-4">
         Login to CineBuzz
       </h2>
@@ -106,7 +119,10 @@ const Login = () => {
         <hr className="text-slate-300 h-[2px] w-full" />
       </div>
       <div className="text-center">
-        <button onClick={handleGoogleLogin} className="w-full border rounded-full border-slate-300 px-3 py-2 cursor-pointer font-medium hover:bg-[#d96c2c] hover:text-white transition duration-400">
+        <button
+          onClick={handleGoogleLogin}
+          className="w-full border rounded-full border-slate-300 px-3 py-2 cursor-pointer font-medium hover:bg-[#d96c2c] hover:text-white transition duration-400"
+        >
           Login with Google
         </button>
       </div>

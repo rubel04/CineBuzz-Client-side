@@ -2,12 +2,20 @@ import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { useTheme } from "../Hooks/UseTheme";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { useEffect } from "react";
 
 const SignUp = () => {
   const { signUpUser, loginUserWithGoogle, updateUserProfile } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const {mode} = useTheme();
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -85,7 +93,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="md:3/4 lg:w-2/5 mx-auto md:my-16 bg-gray-50 p-6 md:p-16 rounded">
+    <div data-aos="flip-left" className={`${mode === "dark" && 'text-black'} md:3/4 lg:w-2/5 mx-auto md:my-16 bg-gray-50 p-6 md:p-16 rounded`}>
       <h2 className="text-3xl font-medium text-center mb-4">
         Sign Up to CineBuzz
       </h2>

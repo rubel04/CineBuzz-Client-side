@@ -2,11 +2,18 @@ import { GiHeavyFighter } from "react-icons/gi";
 import { IoTimeSharp } from "react-icons/io5";
 import { MdStarHalf } from "react-icons/md";
 import { Link } from "react-router";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { useEffect } from "react";
+
 
 const MovieCard = (props) => {
   const { movie } = props || {};
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   return (
-    <div>
+    <div data-aos="fade-up">
       <div>
         <img
           className="transition-transform hover:translate-y-4 duration-700"

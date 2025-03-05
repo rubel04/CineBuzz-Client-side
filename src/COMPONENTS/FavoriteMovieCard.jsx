@@ -3,13 +3,19 @@ import { IoTimeSharp } from "react-icons/io5";
 import { MdStarHalf } from "react-icons/md";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { useEffect } from "react";
 
 const FavoriteMovieCard = (props) => {
   const { movie } = props || {};
   const navigate = useNavigate();
+  useEffect(() => {
+      AOS.init({ duration: 2000 });
+    }, []);
   const handleDeleteFavoriteMovie = (id) => {
     console.log("delete", id);
-    fetch(`http://localhost:4000/favoriteMovies/${id}`, {
+    fetch(`https://cinebuzz-server-side.vercel.app/favoriteMovies/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -26,7 +32,7 @@ const FavoriteMovieCard = (props) => {
       });
   };
   return (
-    <div>
+    <div data-aos="fade-up">
       <div>
         <img
           className="transition-transform hover:translate-y-4 duration-700"

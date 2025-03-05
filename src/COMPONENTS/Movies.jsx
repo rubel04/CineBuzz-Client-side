@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { BiSolidMoviePlay } from "react-icons/bi";
 import MovieCard from "./MovieCard";
 import { Link } from "react-router";
+import { Typewriter } from 'react-simple-typewriter';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:4000/movies")
+    fetch("https://cinebuzz-server-side.vercel.app/movies")
       .then((res) => res.json())
       .then((data) => setMovies(data));
   }, []);
@@ -20,11 +21,20 @@ const Movies = () => {
           Browse trending movies
         </p>
         <h2 className="text-3xl font-bold">
-          Top Featured Movies in <br /> CineBuzz
+        <Typewriter
+            words={['Top Featured Movies in CineBuzz' ]}
+            loop={5}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={70}
+            delaySpeed={1000}
+          />
         </h2>
+        
       </div>
       <div className="">
-        <div className="md:w-10/12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {movies.map((movie) => (
             <MovieCard key={movie._id} movie={movie}></MovieCard>
           ))}

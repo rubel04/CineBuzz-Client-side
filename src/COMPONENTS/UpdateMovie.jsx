@@ -48,7 +48,7 @@ const UpdateMovie = () => {
     setError(newError);
     if (Object.keys(newError).length === 0) {
       console.log("condition fulfill", updateMovie);
-      fetch(`http://localhost:4000/updateMovies/${movie._id}`, {
+      fetch(`https://cinebuzz-server-side.vercel.app/updateMovies/${movie._id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

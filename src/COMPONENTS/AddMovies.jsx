@@ -48,7 +48,7 @@ const AddMovies = () => {
     setError(newError);
     if (Object.keys(newError).length === 0) {
       console.log("condition fulfill", newMovie);
-      fetch("http://localhost:4000/movies", {
+      fetch("https://cinebuzz-server-side.vercel.app/movies", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -141,6 +141,7 @@ const AddMovies = () => {
               <option value="2007">2007</option>
               <option value="2008">2008</option>
               <option value="2009">2009</option>
+              <option value="2009">2010</option>
               <option value="2011">2011</option>
               <option value="2012">2012</option>
               <option value="2013">2013</option>
