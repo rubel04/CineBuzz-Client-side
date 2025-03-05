@@ -11,7 +11,6 @@ export const useTheme = () => {
     setMode(newMode);
     localStorage.setItem("mode", newMode);
     console.log("HTML classList:", document.documentElement.classList);
-
   }
 
   useEffect(() => {

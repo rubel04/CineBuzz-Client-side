@@ -93,7 +93,7 @@ const SignUp = () => {
   };
 
   return (
-    <div data-aos="flip-left" className={`${mode === "dark" && 'text-black'} md:3/4 lg:w-2/5 mx-auto md:my-16 bg-gray-50 p-6 md:p-16 rounded`}>
+    <div data-aos="flip-left" className={`${mode === "dark" && 'bg-black border'} md:3/4 lg:w-2/5 mx-auto md:my-16 p-6 md:p-16 rounded`}>
       <h2 className="text-3xl font-medium text-center mb-4">
         Sign Up to CineBuzz
       </h2>

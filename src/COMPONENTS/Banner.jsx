@@ -7,13 +7,14 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
+import { Link } from "react-router";
 
 const Banner = () => {
   useEffect(() => {
     AOS.init;
   });
   return (
-    <div data-aos="zoom-in-">
+    <div className="relative" data-aos="zoom-in">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -55,7 +56,7 @@ const Banner = () => {
                 <p className="text-white text-sm md:text-xl">
                   Written and Directed by Aleesha Rose / ireland 2025
                 </p>
-                <button className="rounded-full px-6 md:px-12 py-2 md:py-1 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
+                <button className="rounded-full px-6 md:px-12 py-1 md:py-3 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
                   Get Movie
                 </button>
               </div>
@@ -88,7 +89,7 @@ const Banner = () => {
                 <p className="text-white text-sm md:text-xl">
                   Written and Directed by Jue Alissa / United States 2022
                 </p>
-                <button className="rounded-full px-6 md:px-12 py-2 md:py-1 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
+                <button className="rounded-full px-6 md:px-12 py-1 md:py-3 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
                   Get Movie
                 </button>
               </div>
@@ -121,7 +122,7 @@ const Banner = () => {
                 <p className="text-white text-sm md:text-xl">
                   Written and Directed by James / United Kigndom 2024
                 </p>
-                <button className="rounded-full px-6 md:px-12 py-2 md:py-1 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
+                <button className="rounded-full px-6 md:px-12 py-1 md:py-3 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
                   Get Movie
                 </button>
               </div>
@@ -154,7 +155,7 @@ const Banner = () => {
                 <p className="text-white text-sm md:text-xl">
                   Written and Directed by Dev Rubel / Australia 2023
                 </p>
-                <button className="rounded-full px-6 md:px-12 py-2 md:py-1 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
+                <button className="rounded-full px-6 md:px-12 py-1 md:py-3 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
                   Get Movie
                 </button>
               </div>
@@ -187,7 +188,7 @@ const Banner = () => {
                 <p className="text-white text-sm md:text-xl">
                   Written and Directed by Kenvin Lord / ireland 2022
                 </p>
-                <button className="rounded-full px-6 md:px-12 py-2 md:py-1 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
+                <button className="rounded-full px-6 md:px-12 py-1 md:py-3 cursor-pointer text-sm md:text-normal font-medium bg-[#d96c2c] text-white">
                   Get Movie
                 </button>
               </div>
@@ -199,6 +200,9 @@ const Banner = () => {
           </div>
         </SwiperSlide>
       </Swiper>
+      {/* <div className=" absolute -bottom-20">
+      <h3 className="text-xl bg-[#d96c2c] py-8 text-white text-center w-full">You can’t Decide What Movie to Watch Next? <Link className="underline" to="/allMovies">Watch Movie List</Link></h3>
+      </div> */}
     </div>
   );
 };
