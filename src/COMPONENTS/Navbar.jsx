@@ -7,10 +7,13 @@ import { RiMovieAiLine, RiMovieLine } from "react-icons/ri";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { BsFillBrightnessHighFill, BsMoonStarsFill } from "react-icons/bs";
+import { useTheme } from "../Hooks/UseTheme";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const {changeTheme,mode} = useTheme();
   const links = (
     <>
       <NavLink
@@ -93,7 +96,7 @@ const Navbar = () => {
       });
   };
   return (
-    <div className="md:w-11/12 mx-auto">
+    <div className="md:w-11/12 mx-auto dark:bg-black">
       <div className="mt-2">
         <a className="text-3xl pl-3 text-[#d96c2c] italic font-medium">
           Cine<span className="text-black">Buzz</span>
@@ -133,7 +136,26 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end flex items-center gap-4">
+          {/* {mode !== "dark" ? (
+            
+            <span
+              onClick={changeTheme}
+              className="text-4xl cursor-pointer"
+            >
+              <BsFillBrightnessHighFill />
+            </span>
+          ) : (
+            <span
+              onClick={changeTheme}
+              className="text-4xl cursor-pointer"
+            >
+              <BsMoonStarsFill />
+            </span>
+          )} */}
+          <button className="text-4xl cursor-pointer" onClick={changeTheme}>{
+          mode === 'dark'? <BsFillBrightnessHighFill /> : <BsMoonStarsFill />
+        }</button>
           {user ? (
             <div className="dropdown dropdown-hover dropdown-end">
               <div tabIndex={0} role="button" className="m-1">

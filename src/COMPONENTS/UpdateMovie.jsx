@@ -1,15 +1,16 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
+import { AuthContext } from "../providers/AuthProvider";
+import { useLoaderData, useNavigate } from "react-router";
+import { useState } from "react";
 import { useTheme } from "../Hooks/UseTheme";
 
-const AddMovies = () => {
-  const { user } = useContext(AuthContext);
+const UpdateMovie = () => {
   const [error, setError] = useState({});
-  const navigate = useNavigate();
+  const movie = useLoaderData();
+  console.log(movie);
   const {mode} = useTheme();
-  const handleAddMovie = (event) => {
+    const navigate = useNavigate();
+  const handleUpdateMovie = (event) => {
     event.preventDefault();
     const form = event.target;
     const title = form.title.value;
@@ -19,10 +20,8 @@ const AddMovies = () => {
     const description = form.description.value;
     const releaseYear = form.releaseYear.value;
     const genre = form.genre.value;
-    const email = user?.email;
 
-    const newMovie = {
-      email,
+    const updateMovie = {
       title,
       poster,
       duration,
@@ -31,14 +30,15 @@ const AddMovies = () => {
       releaseYear,
       genre,
     };
-    // console.log(newMovie);
+    // console.log(updateMovie);
 
     const newError = {};
     if (!title || title.length < 2)
       newError.title = "Title must be at least 2 characters.";
     if (!title || !/^https?:\/\/.+\.(jpg|jpeg|png|gif|webp)$/i.test(poster))
       newError.poster = "Poster must be a valid image URL.";
-    if (!duration || isNaN(duration) || duration < 60) newError.duration = "Duration must be at least 60 minutes.";
+    if (!duration || isNaN(duration) || duration < 60)
+      newError.duration = "Duration must be at least 60 minutes.";
     if (!rating) newError.rating = "Please select a rating.";
     if (!description || description.length < 10)
       newError.description = "Summary must be at least 10 characters.";
@@ -47,42 +47,42 @@ const AddMovies = () => {
 
     setError(newError);
     if (Object.keys(newError).length === 0) {
-      console.log("condition fulfill", newMovie);
-      fetch("http://localhost:4000/movies", {
-        method: "POST",
+      console.log("condition fulfill", updateMovie);
+      fetch(`http://localhost:4000/updateMovies/${movie._id}`, {
+        method: "PUT",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(newMovie),
+        body: JSON.stringify(updateMovie),
       })
         .then((res) => res.json())
         .then((data) => {
-          // console.log(data);
-          if (data.insertedId) {
+          console.log(data);
+          if (data.modifiedCount > 0) {
             Swal.fire({
-              title: "You successfully add a movie!",
+              title: "Movie updated successfully!",
               icon: "success",
               draggable: true,
             });
-            form.reset();
-            navigate('/allMovies')
+            navigate(`/movie/${movie._id}`)
           }
         });
     }
   };
-
   return (
     <div className={`${mode == "dark" && 'text-black'} md:3/4 lg:w-2/5 mx-auto md:mb-12 md:mt-8 bg-gray-50 p-6 md:p-12 rounded`}>
-      <h3 className="text-3xl mb-4 font-bold">Add New Movie</h3>
-      <form onSubmit={handleAddMovie}>
+      <h3 className="text-3xl mb-4 font-bold">Update a Movie</h3>
+      <form onSubmit={handleUpdateMovie}>
         <div className="flex gap-4">
           <div className="w-full">
             <label htmlFor="">Movie Title</label> <br />
             <input
               className="input w-full mt-1 pl-4"
               type="text"
+              defaultValue={movie?.title}
               placeholder="Title"
               name="title"
+              
             />
             {error.title && (
               <p className="text-sm text-red-500">{error.title}</p>
@@ -93,6 +93,7 @@ const AddMovies = () => {
             <input
               className="input w-full mt-1 pl-4"
               type="text"
+              defaultValue={movie?.poster}
               placeholder="Poster"
               name="poster"
             />
@@ -106,6 +107,7 @@ const AddMovies = () => {
           <input
             className="input w-full mt-1 pl-4"
             type="number"
+            defaultValue={movie?.duration}
             placeholder="Duration"
             name="duration"
           />
@@ -116,7 +118,7 @@ const AddMovies = () => {
         <div>
           <fieldset className="fieldset">
             <legend className="text-base">Genre</legend>
-            <select className="select w-full" name="genre">
+            <select className="select w-full" name="genre" defaultValue={movie?.genre}>
               <option value="Comedy">Comedy</option>
               <option value="Drama">Drama</option>
               <option value="Horror">Horror</option>
@@ -131,7 +133,7 @@ const AddMovies = () => {
         <div>
           <fieldset className="fieldset">
             <legend className="text-base">Release Year</legend>
-            <select className="select w-full" name="releaseYear">
+            <select className="select w-full" name="releaseYear" defaultValue={movie?.releaseYear}>
               <option value="2001">2001</option>
               <option value="2002">2002</option>
               <option value="2003">2003</option>
@@ -167,6 +169,7 @@ const AddMovies = () => {
           <input
             className="input w-full mt-1 pl-4"
             type="text"
+            defaultValue={movie?.rating}
             placeholder="Rating"
             name="rating"
           />
@@ -179,6 +182,7 @@ const AddMovies = () => {
           <textarea
             className="input h-20 w-full mt-1 p-4"
             type="text"
+            defaultValue={movie?.description}
             placeholder="Short Description"
             name="description"
           />
@@ -190,11 +194,11 @@ const AddMovies = () => {
           type="submit"
           className="mt-6 w-full px-6 py-2 rounded cursor-pointer font-medium bg-[#d96c2c] text-white"
         >
-          Add Movie
+          Update Movie
         </button>
       </form>
     </div>
   );
 };
 
-export default AddMovies;
+export default UpdateMovie;

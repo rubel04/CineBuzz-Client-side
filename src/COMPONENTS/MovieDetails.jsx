@@ -3,8 +3,12 @@ import { GiHeavyFighter } from "react-icons/gi";
 import { IoTimeSharp } from "react-icons/io5";
 import { MdStarHalf } from "react-icons/md";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const MovieDetails = () => {
+  const {user}= useContext(AuthContext);
+  const userEmail = user.email;
   const movie = useLoaderData();
   const navigate = useNavigate();
 
@@ -16,7 +20,7 @@ const MovieDetails = () => {
       .then((data) => {
         if (data.deletedCount > 0) {
           Swal.fire({
-            title: "You successfully add a movie!",
+            title: "You successfully delete a movie!",
             icon: "success",
             draggable: true,
           });
@@ -25,7 +29,7 @@ const MovieDetails = () => {
       });
   };
   const handleAddMovieToFavorite = () => {
-    fetch(`http://localhost:4000/favoriteMovies`, {
+    fetch(`http://localhost:4000/favoriteMovies?email=${userEmail}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -57,7 +61,7 @@ const MovieDetails = () => {
         <h3 className="text-xl font-bold hover:text-[#d96c2c] transition duration-400 ">
           {movie.title}
         </h3>
-        <div className="flex justify-between items-center text-gray-600 text-sm">
+        <div className="w-1/2 flex justify-between items-center text-gray-600 text-sm">
           <div className="flex items-center gap-2">
             <GiHeavyFighter className="text-[#d96c2c] text-base" />
             {/* {movie?.genre?.map((genr, idx) => (
@@ -70,7 +74,7 @@ const MovieDetails = () => {
             {movie.duration} Mins
           </p>
         </div>
-        <div className="flex justify-between text-gray-600 text-sm ">
+        <div className="w-1/2 flex justify-between text-gray-600 text-sm ">
           <p className="flex items-center">
             <MdStarHalf className="text-[#d96c2c] text-xl" />
             {movie.rating}
@@ -78,17 +82,24 @@ const MovieDetails = () => {
           <p>Release: {movie.releaseYear}</p>
         </div>
         <div className="flex gap-6">
+        <button
+            onClick={handleAddMovieToFavorite}
+            className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
+          >
+            Add To Favorite
+          </button>
+          <Link
+          to={`/updateMovie/${movie._id}`}
+            // onClick={() => handleUpdateMovie(movie._id)}
+            className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
+          >
+            Update Movie
+          </Link>
           <button
             onClick={() => handleDeleteMovie(movie._id)}
             className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
           >
             Delete Movie
-          </button>
-          <button
-            onClick={handleAddMovieToFavorite}
-            className="mt-2 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
-          >
-            Add To Favorite
           </button>
         </div>
       </div>

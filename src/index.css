@@ -10,3 +10,6 @@
     animation: wiggle 10s ease-in-out infinite;
   }
   
+  .dark {
+    @apply bg-black text-white;
+  }

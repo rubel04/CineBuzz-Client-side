@@ -30,7 +30,7 @@ const Movies = () => {
           ))}
         </div>
         <button className="block m-auto mt-12 ">
-        <Link to="/allMovies" className="border rounded-full border-slate-300 px-8 py-3 cursor-pointer font-medium bg-[#d96c2c] text-white">
+        <Link to="/allMovies" className="rounded-full px-8 py-3 cursor-pointer font-medium bg-[#d96c2c] text-white">
           See All Movies
         </Link>
         </button>
