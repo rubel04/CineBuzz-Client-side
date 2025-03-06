@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router";
-import { Typewriter } from "react-simple-typewriter";
 
 const MovieCategories = () => {
   return (
