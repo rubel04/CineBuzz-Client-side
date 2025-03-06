@@ -1,51 +1,80 @@
 import React from "react";
+import { Link } from "react-router";
 import { Typewriter } from "react-simple-typewriter";
 
 const MovieCategories = () => {
   return (
-    <div className="flex justify-between items-center">
-      <div className=" grid grid-cols-2 gap-6">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5WeBtBfZkuWoMDrycVC1hTqgCR0Mm6XHdqQ&s"
-          alt=""
-        />
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5WeBtBfZkuWoMDrycVC1hTqgCR0Mm6XHdqQ&s"
-          alt=""
-        />
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5WeBtBfZkuWoMDrycVC1hTqgCR0Mm6XHdqQ&s"
-          alt=""
-        />
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5WeBtBfZkuWoMDrycVC1hTqgCR0Mm6XHdqQ&s"
-          alt=""
-        />
-        <div className="col-span-2 flex justify-end">
+    <div className="md:flex justify-between items-center mt-20">
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="cursor-pointer transition-transform hover:scale-110 duration-700 relative">
           <img
+            className="w-full h-full"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5WeBtBfZkuWoMDrycVC1hTqgCR0Mm6XHdqQ&s"
             alt=""
           />
+          <p className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-100 bg-black/30">
+            Drama
+          </p>
+        </div>
+        <div className="cursor-pointer transition-transform hover:scale-110 duration-700 relative">
+          <img
+            className="w-full h-full"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZcmcerCwHs-KEJ73zD_DpgaooH6bA4ce1Ww&s"
+            alt=""
+          />
+          <p className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-100 bg-black/30">
+            Horror
+          </p>
+        </div>
+        <div className="cursor-pointer transition-transform hover:scale-110 duration-700 relative">
+          <img
+            className="w-full h-full"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKuYtCIEmbtP3x0_8OgeVJjq6Ca4CSPhnokQ&s"
+            alt=""
+          />
+          <p className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-100 bg-black/30">
+            Action
+          </p>
+        </div>
+        <div className="cursor-pointer transition-transform hover:scale-110 duration-700 relative">
+          <img
+            className="w-full h-full"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1U5nvNExSsR6MzprcEBg8Zz0GyTQibaF8dg&s"
+            alt=""
+          />
+          <p className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-100 bg-black/30">
+            Comedy
+          </p>
+        </div>
+        <div className="cursor-pointer transition-transform hover:scale-110 duration-700 relative">
+          <img
+            className="w-full h-full"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtRpDp4tZLAMkZLHFbakQUq8gmyK3A1AX6QA&s"
+            alt=""
+          />
+          <p className="absolute inset-0 flex items-center justify-center text-2xl font-bold text-gray-100 bg-black/30">
+            Adventure
+          </p>
         </div>
       </div>
-      
-      <div className="border flex justify-center items-center flex-col">
-        <h2 className="text-3xl font-bold">
-          {/* <Typewriter
-            words={["Popular Categories"]}
-            loop={5}
-            cursor
-            cursorStyle="_"
-            typeSpeed={70}
-            deleteSpeed={70}
-            delaySpeed={1000}
-          /> */}
-          Popular Categories
-        </h2>
-        <p className="md:w-1/2">
-          All movie at CineBuzz is divided into several categories. It helps you
-          to easily navigate between them and find what you like.
-        </p>
+      <div className="flex-1 flex justify-center">
+        <div className="md:w-1/2 space-y-4 mt-4 md:mt-0">
+          <h2 className="text-3xl font-bold">
+            Popular <br /> Categories
+          </h2>
+          <p>
+            All movie at CineBuzz is divided into several categories. It helps
+            you to easily navigate between them and find what you like.
+          </p>
+          <button className="mt-12 ">
+            <Link
+              to="/allMovies"
+              className="rounded-full px-8 py-3 cursor-pointer font-medium bg-[#d96c2c] text-gray-100"
+            >
+              See All Category
+            </Link>
+          </button>
+        </div>
       </div>
     </div>
   );
