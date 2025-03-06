@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router";
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { useEffect } from "react";
+
 
 const MovieCategories = () => {
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
   return (
     <div className="md:flex justify-between items-center mt-20">
-      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div data-aos="fade-right" className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="cursor-pointer transition-transform hover:scale-110 duration-700 relative">
           <img
             className="w-full h-full"
@@ -56,7 +63,7 @@ const MovieCategories = () => {
           </p>
         </div>
       </div>
-      <div className="flex-1 flex justify-center">
+      <div data-aos="fade-left" className="flex-1 flex justify-center">
         <div className="md:w-1/2 space-y-4 mt-4 md:mt-0">
           <h2 className="text-3xl font-bold">
             Popular <br /> Categories
