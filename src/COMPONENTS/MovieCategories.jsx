@@ -10,7 +10,7 @@ const MovieCategories = () => {
     AOS.init({ duration: 2000 });
   }, []);
   return (
-    <div className="md:flex justify-between items-center mt-20">
+    <div className="md:flex justify-between items-center mt-20 w-11/12 mx-auto">
       <div data-aos="fade-right" className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="cursor-pointer transition-transform hover:scale-110 duration-700 relative">
           <img

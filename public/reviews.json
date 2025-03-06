@@ -1,0 +1,39 @@
+[
+    {
+      "name": "John Smith",
+      "image": "https://i.ibb.co/6Pq2TW2/r-3.webp",
+      "rating": 5,
+      "review": "CineBuzz is a movie lover’s paradise! The UI is sleek, and finding top-rated films is effortless."
+    },
+    {
+      "name": "David Clark",
+      "image": "https://i.ibb.co/kgrC7gX/r-4.jpg",
+      "rating": 5,
+      "review": "Smooth, fast, and packed with amazing movie collections. CineBuzz makes movie browsing a joy!"
+    },
+    {
+      "name": "James Davis",
+      "image": "https://i.ibb.co/mSPVGsM/r-5.jpg",
+      "rating": 5,
+      "review": "Love the intuitive design and detailed movie info. Perfect for film enthusiasts!"
+    },
+    {
+      "name": "Michael Taylor",
+      "image": "https://i.ibb.co/26Ytvyk/r-6.jpg",
+      "rating": 5,
+      "review": "CineBuzz is my go-to site for movie ratings and recommendations."
+    },
+    {
+      "name": "Robert Miller",
+      "image": "https://i.ibb.co/4JYMnmt/r-7.jpg",
+      "rating": 5,
+      "review": "Simple yet powerful! Great movie selection and an excellent user experience."
+    },
+    {
+      "name": "William Brown",
+      "image": "https://i.ibb.co/yBxznkr/r-8.jpg",
+      "rating": 5,
+      "review": "A must-visit for cinephiles! Everything from posters to genres is well-organized."
+    }
+  ]
+  

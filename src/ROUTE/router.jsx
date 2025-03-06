@@ -10,6 +10,7 @@ import AllMovies from "../COMPONENTS/AllMovies";
 import ErrorPage from "../PAGES/ErrorPage";
 import MyFavoriteMovies from "../COMPONENTS/MyFavoriteMovies";
 import UpdateMovie from "../COMPONENTS/UpdateMovie";
+import MovieCategories from "../COMPONENTS/MovieCategories";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/category",
+        element: <MovieCategories />,
       },
       {
         path: '/movie/:id',

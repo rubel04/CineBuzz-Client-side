@@ -3,9 +3,14 @@ import { useLoaderData } from "react-router";
 import { BiSolidMoviePlay } from "react-icons/bi";
 import FavoriteMovieCard from "./FavoriteMovieCard";
 import { Typewriter } from "react-simple-typewriter";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const MyFavoriteMovies = () => {
-  const favoriteMovies = useLoaderData();
+  const loadedMovies = useLoaderData();
+  const {user}= useContext(AuthContext);
+  const email = user.email;
+  const favoriteMovies = loadedMovies.filter(movies => movies.email === email);
   return (
     <div className="mt-6 w-11/12 mx-auto">
       {favoriteMovies.length === 0 ? (

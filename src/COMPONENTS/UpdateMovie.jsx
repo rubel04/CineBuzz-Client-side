@@ -70,7 +70,7 @@ const UpdateMovie = () => {
     }
   };
   return (
-    <div className={`${mode == "dark" && 'text-black'} md:3/4 lg:w-2/5 mx-auto md:mb-12 md:mt-8 bg-gray-50 p-6 md:p-12 rounded`}>
+    <div className={`${mode === "dark" && 'bg-black border'} md:3/4 lg:w-2/5 mx-auto md:mb-12 md:mt-8 p-6 md:p-12 rounded`}>
       <h3 className="text-3xl mb-4 font-bold">Update a Movie</h3>
       <form onSubmit={handleUpdateMovie}>
         <div className="flex gap-4">

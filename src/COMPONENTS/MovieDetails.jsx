@@ -93,21 +93,21 @@ const MovieDetails = () => {
         <div className="flex gap-2 md:gap-6">
           <button
             onClick={handleAddMovieToFavorite}
-            className="flex items-center bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
+            className="flex items-center gap-1 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
           >
             <GrFavorite />
             <span className="hidden md:block">Add To Favorite</span>
           </button>
           <Link
             to={`/updateMovie/${movie._id}`}
-            className="bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
+            className="flex items-center gap-1 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
           >
             <TbEdit />
             <span className="hidden md:block">Update Movie</span>
           </Link>
           <button
             onClick={() => handleDeleteMovie(movie._id)}
-            className="bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
+            className="flex items-center gap-1 bg-gray-200 hover:bg-[#d96c2c] hover:text-white transition duration-600 text-gray-600 px-5 py-1 cursor-pointer font-medium"
           >
             
             <RiDeleteBin5Line />

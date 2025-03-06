@@ -1,6 +1,7 @@
 import Banner from "../COMPONENTS/Banner";
 import MovieCategories from "../COMPONENTS/MovieCategories";
 import Movies from "../COMPONENTS/Movies";
+import Reviews from "../COMPONENTS/Reviews";
 
 const Home = () => {
   return (
@@ -12,6 +13,9 @@ const Home = () => {
         </section>
         <section>
           <MovieCategories></MovieCategories>
+        </section>
+        <section>
+          <Reviews></Reviews>
         </section>
       </main>
     </div>

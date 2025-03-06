@@ -62,10 +62,10 @@ const Navbar = () => {
             ? "flex items-center gap-1 text-[#d96c2c] underline"
             : "flex items-center gap-1"
         }
-        to="/news"
+        to="/category"
       >
         <PiNewspaperClippingLight />
-        News
+        Category
       </NavLink>
       {user && (
         <NavLink

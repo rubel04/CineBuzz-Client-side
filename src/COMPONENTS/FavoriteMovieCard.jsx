@@ -35,7 +35,7 @@ const FavoriteMovieCard = (props) => {
     <div data-aos="fade-up">
       <div>
         <img
-          className="transition-transform hover:translate-y-4 duration-700"
+          className="transition-transform hover:translate-y-4 duration-700 max-h-[600px] min-h-[600px] object-cover w-full"
           src={movie.poster}
           alt="movie poster"
         />
