@@ -25,6 +25,7 @@ const AllMovies = () => {
             delaySpeed={1000}
           />
         </h2>
+        <input className="border py-1 px-4 rounded" type="text" placeholder="Search a movie" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {allMovies.map((movie) => (

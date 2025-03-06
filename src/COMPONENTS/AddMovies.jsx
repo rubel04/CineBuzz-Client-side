@@ -47,7 +47,7 @@ const AddMovies = () => {
 
     setError(newError);
     if (Object.keys(newError).length === 0) {
-      console.log("condition fulfill", newMovie);
+      // console.log("condition fulfill", newMovie);
       fetch("https://cinebuzz-server-side.vercel.app/movies", {
         method: "POST",
         headers: {
